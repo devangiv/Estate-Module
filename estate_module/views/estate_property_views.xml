@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="view_test_model_form" model="ir.ui.view">
+             <field name="name">test.model.form</field>
+             <field name="model">test.model</field>
+             <field name="arch" type="xml">
+              <form string="Test model">
+                  <sheet>
+                      <group>
+                          <field name="city"/>
+                          <field name="test_id"/>
+                          <field name="test_ids"/>
+                      </group>
+                  </sheet>
+              </form>
+              </field>
+        </record>
+
+        <record id = "view_test_model_list" model = "ir.ui.view">
+            <field name = "name">test.model.list</field>
+            <field name = "model">test.model</field>
+            <field name = "arch" type="xml">
+                <tree string = "Test model">
+                    <field name = "city"/>
+                    <field name="test_id"/>
+                    <field name = "test_ids"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_estate_module_form" model="ir.ui.view" >
+            <field name="name">estate.property.form</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <form string="Properties">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="new,sold,cancelled"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                  <field name = "title"/>
+                            </group>
+                        </group>
+                            <group>
+                                <group>
+                                   <field name = "name"/>
+                                </group>
+                                <group>
+                                    <field name = "parent_id"/>
+                                </group>
+                                <group>
+                                    <field name = "last_seen"/>
+                                </group>
+                                <group>
+                                    <field name = "city"/>
+                                </group>
+                                 <group>
+                                    <field name = "partner_id"/>
+                                </group>
+                            </group>
+                        <notebook>
+                            <page string = "Description">
+                                <group>
+                                    <field name = "sequence"/>
+                                  <field name = "description"/>
+                                  <field name="postcode"/>
+                                  <field name="date_availability"/>
+                                    <field name="expected_price"/>
+                                  <field name="selling_price"/>
+                                  <field name="bedrooms"/>
+                                  <field name="living_area"/>
+                                  <field name="facades"/>
+                                  <field name="garage"/>
+                                  <field name="garden"/>
+                                  <field name="garden_area" invisible="not garden"/>
+                                  <field name="garden_orientation" invisible="not garden"/>
+                                  <field name="total_area"/>
+                                    <field name = "status"/>
+                                </group>
+                            </page>
+                            <page string="offer">
+                                <field name = "offer"/>
+                                   <group>
+                                       <group>
+                                       <field name = "price"/>
+                                       <field name = "partner_id"/>
+                                       <field name = "status_check"/>
+                                        <field name = "state"/>
+                                        </group>
+                                   </group>
+                             </page>
+                             <page string="Other Information">
+                                <field name = "other_Info"/>
+                             </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_estate_module_list" model="ir.ui.view">
+            <field name="name">estate.property.list</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <tree string="Properties">
+                    <field name = "title"/>
+                    <field name = "description"/>
+                    <field name = "partner_id"/>
+                    <field name = "name"/>
+                     <field name="sequence" widget="handle"/>
+                    <field name = "last_seen"/>
+                    <field name = "city"/>
+                     <field name = "contact"/>
+                    <field name="postcode"/>
+                    <field name="date_availability"/>
+                    <field name="expected_price"/>
+                    <field name="selling_price"/>
+                    <field name="bedrooms"/>
+                    <field name="living_area"/>
+                    <field name="facades"/>
+                    <field name="garage"/>
+                    <field name="garden"/>
+                    <field name="garden_area" invisible="not garden"/>
+                    <field name="garden_orientation" invisible="not garden"/>
+                     <field name = "total_area"/>
+                     <field name = "status"/>
+                     <field name = "state"/>
+                     <field name = "other_Info"/>
+                    <field name = "price"/>
+                    <field name = "status_check"/>
+                </tree>
+            </field>
+        </record>
+        <record id = "estate_module_search" model="ir.ui.view">
+            <field name = "name">estate.property.search</field>
+            <field name = "model">estate.property</field>
+            <field name = "arch" type="xml">
+                <search>
+                     <field name = "description"/>
+                     <field name = "name"/>
+                     <field name = "last_seen"/>
+                     <field name="postcode"/>
+                     <field name="date_availability"/>
+                     <field name="expected_price"/>
+                     <field name="selling_price"/>
+                     <field name="bedrooms"/>
+                     <field name="living_area"/>
+                     <field name="facades"/>
+                     <field name="garage"/>
+                     <field name="garden"/>
+                     <field name="garden_area"/>
+                     <field name = "status"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_property_kanban" model="ir.ui.view">
+            <field name="name">estate.property.kanban</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+            <kanban>
+               <field name="name"/>
+               <templates>
+                  <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <strong><field name="name"/></strong>
+                    </div>
+                  </t>
+               </templates>
+            </kanban>
+            </field>
+        </record>
+
+
+
+
+        <record id="action_estate_property" model="ir.actions.act_window">
+          <field name="name">Property</field>
+          <field name="res_model">estate.property</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_test_model" model="ir.actions.act_window">
+			<field name="name">Test_Model</field>
+            <field name="res_model">test.model</field>
+            <field name="view_mode">tree,form</field>
+		</record>
+
+        <record id="action_property_kanban" model="ir.actions.act_window">
+            <field name="name">Properties</field>
+            <field name="res_model">estate.property</field>
+           <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <menuitem id="menu_property_root" name="Properties"/>
+        <menuitem id="menu_property" name="All Properties" parent="menu_property_root" action="action_property_kanban"/>
+
+        <menuitem name="Real Estate" id="menu_real_estate"
+          sequence="100" action="action_estate_property"/>
+
+        <menuitem name="Test Model"
+        id="menu_test_model"
+        action="action_test_model"
+        parent="menu_real_estate"
+        sequence="200"/>
+    </data>
+</odoo>
